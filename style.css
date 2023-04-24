@@ -1,0 +1,75 @@
+* {
+  /* box-sizing: border-box; */
+}
+
+:focus {
+ /* TODO */
+}
+
+html {
+  /* TODO */
+  background: linear-gradient(to right, yellow, orangered); 
+ 
+}
+
+input {
+ /* TODO */
+  display: block;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  top: 50%;
+}
+
+.search-container {
+ /* TODO */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+ 
+}
+.search-container input,
+.search-container .suggestions {
+  /* TODO */
+  width: 40vw;
+}
+.search-container input {
+  height: 40px;
+  font-size: large;
+
+}
+.search-container .suggestions {
+   /* TODO */
+  position: absolute;
+  top: 55%;
+}
+/* input[type="text"]:focus + .suggestions {
+  position: absolute;
+  top: 50%; positions the suggestions below the input
+  left: 0;
+} 
+*/
+ul {
+  /* TODO */
+  list-style-type: none;
+  padding-left: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+ul.has-suggestions {
+  /* TODO */
+}
+ul li {
+  /* TODO */
+  padding: 10px;
+  text-align: left;
+}
+ul li:hover {
+  /* TODO */
+  background-color: orangered;
+}
+
+input {
+   /* TODO */
+}
