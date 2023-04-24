@@ -5,23 +5,16 @@ const fruits = ['Apple', 'Apricot', 'Avocado 🥑', 'Banana', 'Bilberry', 'Black
 
 function search(str) {
 	let lcString = str.toLowerCase();
-	// let results = fruits.filter(fruit => {
-	// 	let lcFruit = fruit.toLowerCase();
-	// 	return lcFruit.indexOf(lcString) != -1;
-	// }).map(fruit => {
-
-	// });
 	let results = [];
 	fruits.forEach(fruit => {
 		let lcFruit = fruit.toLowerCase();
 		let index = lcFruit.indexOf(lcString);
 		if(index != -1) {
-			let hFruit = fruit.replace(str, `<b>${str}</b>`);
-			//`${fruit.slice(index)}<b>${str}</b>${fruit.slice(index+str.length, fruit.length)}`;
+			let piece = fruit.slice(index, index + str.length);
+			let hFruit = fruit.replace(piece, `<b>${piece}</b>`);
 			results.push(hFruit);
 		}
 	})
-	//console.log("Counter: ", counter);
 	return results;
 }
 
