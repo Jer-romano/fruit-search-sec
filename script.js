@@ -10,17 +10,21 @@ const fruits = ['Apple', 'Apricot', 'Avocado 🥑', 'Banana', 'Bilberry', 'Black
  * @returns results array
  */
 function search(str) {
-	let lcString = str.toLowerCase();
-	let results = [];
-	fruits.forEach(fruit => { //iterate through fruits array
-		let lcFruit = fruit.toLowerCase();
-		let index = lcFruit.indexOf(lcString); //check if fruit contains substring
-		if(index != -1) {
-			let piece = fruit.slice(index, index + str.length); //portion of string to bolden
-			results.push(fruit.replace(piece, `<b>${piece}</b>`));
-		}
+	let lowerCaseStr = str.toLowerCase();
+	return fruits.filter(fruit => { //returns array of fruits that contain the substring
+		let lowerCaseFruit = fruit.toLowerCase();
+		return (lowerCaseFruit.indexOf(lowerCaseStr) != -1);
 	});
-	return results;
+}
+
+//Boldens the portion of the suggestion that matches the entered string
+function boldenMatchingLetters(results, str) {
+	let lowerCaseStr = str.toLowerCase();
+	return results.map(fruit => { //iterate through fruits array
+			let index = fruit.toLowerCase().indexOf(lowerCaseStr);
+			let piece = fruit.slice(index, index + str.length); //portion of string to bolden
+			return fruit.replace(piece, `<b>${piece}</b>`);
+	});
 }
 
 /**
@@ -32,14 +36,14 @@ function searchHandler(e) {
 		return;
 	} 
 	let results = search(input.value);
-	showSuggestions(results, input.value);
+	showSuggestions(boldenMatchingLetters(results, input.value), input.value);
 }
 
 /**
  * This function takes the results array returned by the search function and displays every
  * entry as a list element
  */
-function showSuggestions(results, inputVal) {
+function showSuggestions(results) {
 	clearSuggestions(); //clear suggestions from previous keyup 
 	for(let fruit of results) { //create an li for every matching fruit
 		let li = document.createElement("li");
@@ -57,10 +61,6 @@ function useSuggestion(e) {
 //clears the search bar
 function clearSuggestions() {
 	suggestions.innerHTML = "";
-}
-//highlights a suggestion when a user hovers over it
-function highlightSuggestion(e) {
-	e.target.classList.add("hover")
 }
 
 input.addEventListener('keyup', searchHandler);
