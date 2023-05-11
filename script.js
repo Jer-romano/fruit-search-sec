@@ -12,13 +12,12 @@ const fruits = ['Apple', 'Apricot', 'Avocado 🥑', 'Banana', 'Bilberry', 'Black
 function search(str) {
 	let lcString = str.toLowerCase();
 	let results = [];
-	fruits.forEach(fruit => {
+	fruits.forEach(fruit => { //iterate through fruits array
 		let lcFruit = fruit.toLowerCase();
-		let index = lcFruit.indexOf(lcString);
+		let index = lcFruit.indexOf(lcString); //check if fruit contains substring
 		if(index != -1) {
 			let piece = fruit.slice(index, index + str.length); //portion of string to bolden
-			let hFruit = fruit.replace(piece, `<b>${piece}</b>`);
-			results.push(hFruit);
+			results.push(fruit.replace(piece, `<b>${piece}</b>`));
 		}
 	});
 	return results;
@@ -41,17 +40,17 @@ function searchHandler(e) {
  * entry as a list element
  */
 function showSuggestions(results, inputVal) {
-	clearSuggestions();
-	for(let fruit of results) {
+	clearSuggestions(); //clear suggestions from previous keyup 
+	for(let fruit of results) { //create an li for every matching fruit
 		let li = document.createElement("li");
-		li.innerHTML = fruit;
+		li.innerHTML = fruit; //innerHTML because of bold tags
 		suggestions.append(li);
 	}
 }
 
 //replaces the text in the search bar with the suggestion that the user clicks on
 function useSuggestion(e) {
-	input.value = e.target.innerText;
+	input.value = e.target.innerText; //sets text of search bar
 	suggestions.innerHTML = ""; //clears suggestion list
 }
 
